@@ -39,7 +39,7 @@ class SetCriterion(nn.Module):
 
         self.HOI_losses = HOI_losses
         self.HOI_matcher = HOI_matcher
-
+        
         if args:
             self.HOI_eos_coef = args.hoi_eos_coef
             if args.dataset_file == 'vcoco':
@@ -54,6 +54,7 @@ class SetCriterion(nn.Module):
                 tgt_empty_weight = torch.ones(self.num_tgt_classes + 1)
                 tgt_empty_weight[-1] = self.HOI_eos_coef
                 self.register_buffer('tgt_empty_weight', tgt_empty_weight)
+
         self.dataset_file = args.dataset_file
         
         empty_weight = torch.ones(self.num_classes + 1)
